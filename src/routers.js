@@ -8,6 +8,7 @@ const Routers = () => {
     return <Suspense fallback={<h5>Loading...</h5>}>
             <Routes>
                 <Route exact path='/' element={<Index />} />
+                <Route exact path='/App' element={<App />} />
                 <Route element={NotFound} />
             </Routes>
         </Suspense>
