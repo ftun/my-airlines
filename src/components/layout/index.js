@@ -4,7 +4,8 @@ import { BrowserRouter, Link } from "react-router-dom";
 const Index = ({ menuItems, children }) => {
     return <BrowserRouter>
         <div className="header">
-            <h1><Link to="/">Vuelos</Link></h1>
+            {/* <h1><Link to="/">Vuelos</Link></h1> */}
+            <h1>Vuelos</h1>
         </div>
         <div className="topnav">
             {menuItems.map((item, index) => <Link key={index} to={item.path}>{item.label}</Link>)}

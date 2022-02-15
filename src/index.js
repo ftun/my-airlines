@@ -11,9 +11,9 @@ import Layout from './components/layout';
 import Routers from './routers';
 
 const menuItems = [
-    {label: 'Vuelos', path: '/vuelos'},
-    {label: 'Paquetes', path: '/paquetes'},
-    {label: 'Ofertas', path: '/ofertas'},
+    {label: 'Inicio', path: '/'},
+    {label: 'Mis Reservas', path: '/reservas'},
+    // {label: 'Ofertas', path: '/ofertas'},
 ];
 
 ReactDOM.render(
