@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Link } from "react-router-dom";
+import MainDestinatios from '../mainDestinations';
 
 const Index = ({ menuItems, children }) => {
     return <BrowserRouter>
         <div className="header">
-            {/* <h1><Link to="/">Vuelos</Link></h1> */}
             <h1>Vuelos</h1>
         </div>
         <div className="topnav">
@@ -13,22 +13,18 @@ const Index = ({ menuItems, children }) => {
         </div>
         <div className="row">
             <div className="leftcolumn">
-                <div className="card">
-                    <h2>Los mejores destinos</h2>
-                    <h5>Cancun, Mexico</h5>
-                    <div className="fakeimg">Image</div>
-                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                <div className='card'>
+                    <h3>Los mejores destinos</h3>
                 </div>
+                <MainDestinatios />
             </div>
             <div className="rightcolumn">
                 {children}
             </div>
         </div>
-
         <div className="footer">
             <h5>© copyright {new Date().getFullYear()}</h5>
         </div>
-
     </BrowserRouter>
 
 };
