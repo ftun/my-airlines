@@ -3,14 +3,14 @@ import axios from 'axios';
 
 const initialState = {
     status: '',
-    data: {},
+    data: [],
 };
 
 export const getDataCountries = createAsyncThunk(
     'countries/fecthCountries',
     async () => {
         try {
-            const response = await axios.get('http://demo1506766.mockable.io/countries');
+            const response = await axios.get('https://demo1506766.mockable.io/countries');
             return response.data;
         } catch (error) {
             console.error(error);

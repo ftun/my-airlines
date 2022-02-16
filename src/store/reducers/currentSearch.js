@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     status: '',
-    data: [],
+    data: {},
 };
 
 // export const getDataCountries = createAsyncThunk(
@@ -19,13 +19,13 @@ const initialState = {
 //     }
 // );
 
-export const bookingReducer = createSlice({
+export const currentSearchReducer = createSlice({
     name: 'reservas',
     initialState,
     reducers: {
-        setBooking: (state, action) => {
-            // console.log('setBooking', state, action);
-            state.data.push(action.payload)
+        setCurrentSearch: (state, action) => {
+            // console.log('setcurrentSearch', state, action);
+            state.data = {...action.payload};
         }
     },
     // extraReducers: (builder) => {
@@ -40,6 +40,6 @@ export const bookingReducer = createSlice({
     // },
 });
 
-export const { setBooking } = bookingReducer.actions;
+export const { setCurrentSearch } = currentSearchReducer.actions;
 
-export default bookingReducer.reducer;
+export default currentSearchReducer.reducer;
