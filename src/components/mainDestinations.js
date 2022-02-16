@@ -12,7 +12,6 @@ const MainDestinatios = props => {
 
     return mainDestinations.map((d, i) => {
         return <div className="card">
-            {/* <h2>Los mejores destinos</h2> */}
             <h5>{d.titulo}</h5>
             <img className="fakeimg" src={d.srcImagen}></img>
             <p>{d.descripcion}</p>

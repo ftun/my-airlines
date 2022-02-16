@@ -24,11 +24,11 @@ export const schedulesReducer = createSlice({
     name: 'schedules',
     initialState,
     reducers: {
-        getListAerolinea: (state, action) => {
-            let data = state.data;
-            return data.map(d => d.aeolineas);
-            // return state[action.payload];
-        },
+        // getListAerolinea: (state, action) => {
+        //     let data = state.data;
+        //     return data.map(d => d.aeolineas);
+        //     // return state[action.payload];
+        // },
     },
     extraReducers: (builder) => {
         builder

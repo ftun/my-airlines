@@ -21,16 +21,31 @@ const Schedule = props => {
             <div className="divTableBody">
                 <div className="divTableRow">
                     <div className="divTableCell">
-                        <h3>Horarrios de vuelos</h3>
+                        <h3>Horarios</h3>
                     </div>
                     {/* <div className="divTableCell">
                         Filtrar Aerolinea: <Select name="list" options={listAerolineas} />
                     </div> */}
                 </div>
                 <div className="divTableRow">
-                    <ul>
-                        {schedules.map((s, i) => <li key={i}>{s.aerolinea}</li>)}
-                    </ul>  
+                    <div className="divTable">
+                        <div className="divTableBody">
+                            {schedules.map((s, i) => {
+                                return <div key={i} className="divTableRow">
+                                    <div className="divTableCell">
+                                        <b>Aerolinea:</b> {s.aerolinea}
+                                    </div>
+                                    <div className="divTableCell">
+                                        <b>Hora:</b> {s.horario}
+                                    </div>
+                                    <div className="divTableCell">
+                                        <b>Precio:</b> {s.precio}
+                                    </div>
+                                </div>
+                            })}
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
