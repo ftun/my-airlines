@@ -11,7 +11,7 @@ const MainDestinatios = props => {
     }, []);
 
     return mainDestinations.map((d, i) => {
-        return <div className="card">
+        return <div className="card" key={i}>
             <h5>{d.titulo}</h5>
             <img className="fakeimg" src={d.srcImagen}></img>
             <p>{d.descripcion}</p>
