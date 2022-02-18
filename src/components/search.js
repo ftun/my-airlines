@@ -54,7 +54,7 @@ const Search = props => {
                             <input name="number" type="number" min={1} defaultValue={1} required={true} />
                         </div>
                         <div className="divTableCell">
-                            <button type="submit">Enviar formulario</button>
+                            <button type="submit">Buscar</button>
                         </div>
                     </div>
                 </div>

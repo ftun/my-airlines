@@ -1,32 +1,42 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDataSchedules } from '../store/reducers/schedules';
+import { addShoppingCart, removeShoppingCart } from '../store/reducers/shoppingCart';
 
 // import Select from '../components/form/select';
 
 const Schedule = props => {
-    const currentSearch = useSelector(state => state.currentSearch.data);
-    const schedules = useSelector(state => state.schedules.data);
-    const numberPerson = currentSearch.number;
+    const dataCurrentSearch = useSelector(state => state.currentSearch.data);
+    const dataSchedules = useSelector(state => state.schedules.data);
+    const dataShoppingCart = useSelector(state => state.shoppingCart.data);
+    const numberPerson = dataCurrentSearch.number;
+
+    const itemsShoppingCart = [...new Set(dataShoppingCart.map(d => d.id))]
     // const listAerolineas = useSelector(state => state.schedules.listAerolineas);
     const dispatch = useDispatch();
-    const existData = Object.keys(currentSearch).length > 0;
+    const existData = Object.keys(dataCurrentSearch).length > 0;
 
     useEffect(() => {
         if (existData) dispatch(getDataSchedules());
     }, [existData]);
 
     const onClickAdd = data => {
-        console.log(data);
+        dispatch(addShoppingCart(data));
+    }
+
+    const onClickRemove = id => {
+        dispatch(removeShoppingCart(id));
     }
 
     if (!existData) return null;
+
+    console.log('itemsShoppingCart', itemsShoppingCart);
     return <div className='card'>
         <div className="divTable">
             <div className="divTableBody">
                 <div className="divTableRow">
                     <div className="divTableCell">
-                        <h3>Horarios de vuelos: {currentSearch.descriptionFrom} - {currentSearch.descriptionTo}</h3>
+                        <h3>Horarios de vuelos: {dataCurrentSearch.descriptionFrom} - {dataCurrentSearch.descriptionTo}</h3>
                     </div>
                     {/* <div className="divTableCell">
                         Filtrar Aerolinea: <Select name="list" options={listAerolineas} />
@@ -35,8 +45,9 @@ const Schedule = props => {
                 <div className="divTableRow">
                     <table>
                         <tbody>
-                            {schedules.map((s, i) => {
+                            {dataSchedules.map((s, i) => {
                                 let data = {...s};
+                                data.id = i;
                                 data.precioPersona = s.precio * numberPerson;
                                 data.iva = (data.precioPersona * 16) / 100;
                                 data.precioFinal = data.precioPersona + data.iva;
@@ -54,7 +65,10 @@ const Schedule = props => {
                                         Precio final: <b>${data.precioFinal} MXN </b>
                                     </td>
                                     <td>
-                                        <input type="button" value="+" onClick={e => onClickAdd(data)} />
+                                        {itemsShoppingCart.includes(data.id) ? 
+                                            <input type="button" value="-" onClick={e => onClickRemove(data.id)} style={{ backgroundColor: 'orange' }} /> : 
+                                            <input type="button" value="+" onClick={e => onClickAdd(data)} />
+                                        }
                                     </td>
                                 </tr>
                             })}

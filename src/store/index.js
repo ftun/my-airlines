@@ -4,6 +4,7 @@ import countriesReducer from './reducers/countries';
 import currentSearchReducer from './reducers/currentSearch';
 import schedulesReducer from './reducers/schedules';
 import mainDestinationsReducer from './reducers/mainDestinations';
+import shoppingCartReducer from './reducers/shoppingCart';
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         currentSearch: currentSearchReducer,
         schedules: schedulesReducer,
         mainDestinations: mainDestinationsReducer,
+        shoppingCart: shoppingCartReducer,
     },
 });

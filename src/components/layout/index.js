@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Link } from "react-router-dom";
 import MainDestinatios from '../mainDestinations';
+import { useSelector } from 'react-redux';
 
 const Index = ({ menuItems, children }) => {
+    const dataShoppingCart = useSelector(state => state.shoppingCart.data);
+
     return <BrowserRouter>
         <div className="header">
             <h1>Vuelos</h1>
         </div>
         <div className="topnav">
             {menuItems.map((item, index) => <Link key={index} to={item.path}>{item.label}</Link>)}
-            <Link to="/carrito" style={{ float: 'right' }}>Carrito</Link>
+            <Link to="/carrito" style={{ float: 'right' }}>Carrito {dataShoppingCart.length > 0 && dataShoppingCart.length}</Link>
         </div>
         <div className="row">
             <div className="leftcolumn">
