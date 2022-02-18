@@ -1,25 +1,22 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-const Bookings = props => {
-    // const dataShoppingCart = useSelector(state => state.shoppingCart.data);
-    // const existItems = Object.keys(dataShoppingCart).length > 0;
+const ShoppingCart = props => {
+    const dataShoppingCart = useSelector(state => state.shoppingCart.data);
+    const existItems = Object.keys(dataShoppingCart).length > 0;
 
     return <div className='card'>
         <div className="divTable">
             <div className="divTableBody">
                 <div className="divTableRow">
                     <div className="divTableCell">
-                        <h3>Mis reservas</h3>
+                        <h3>Mi carrito</h3>
                     </div>
                 </div>
                 <div className="divTableRow">
                     <table>
                         <tbody>
-                            <tr>
-                                <td>Hola XD</td>
-                            </tr>
-                            {/* {dataShoppingCart.map((s, i) => {
+                            {dataShoppingCart.map((s, i) => {
                                 console.log(s);
                                 return <tr key={i}>
                                     <td>
@@ -29,7 +26,7 @@ const Bookings = props => {
                                         Precio final: <b>${s.precioFinal} MXN </b>
                                     </td>
                                 </tr>
-                            })} */}
+                            })}
                         </tbody>
                     </table>
                 </div>
@@ -38,4 +35,4 @@ const Bookings = props => {
     </div>
 };
 
-export default Bookings;
+export default ShoppingCart;
