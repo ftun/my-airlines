@@ -1,25 +1,19 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import BasicView from '../components/basicView';
+
 
 const Bookings = props => {
     // const dataShoppingCart = useSelector(state => state.shoppingCart.data);
     // const existItems = Object.keys(dataShoppingCart).length > 0;
 
-    return <div className='card'>
-        <div className="divTable">
-            <div className="divTableBody">
-                <div className="divTableRow">
-                    <div className="divTableCell">
-                        <h3>Mis reservas</h3>
-                    </div>
-                </div>
-                <div className="divTableRow">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Hola XD</td>
-                            </tr>
-                            {/* {dataShoppingCart.map((s, i) => {
+    return <BasicView title="MIs reservas">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Hola XD</td>
+                </tr>
+                {/* {dataShoppingCart.map((s, i) => {
                                 console.log(s);
                                 return <tr key={i}>
                                     <td>
@@ -30,12 +24,9 @@ const Bookings = props => {
                                     </td>
                                 </tr>
                             })} */}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+            </tbody>
+        </table>
+    </BasicView>;
 };
 
 export default Bookings;
