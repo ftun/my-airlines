@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import BasicView from '../components/basicView';
+import DetailItems from '../components/detailItems';
 import { addBookings, removeBookings, setInitialBookings } from '../store/reducers/bookings';
 
 import { sortArrayOfObject } from '../components/utils';
@@ -40,37 +40,7 @@ const ShoppingCart = props => {
     };
 
     return <BasicView title="Mi carrito">
-        <table>
-            <tbody>
-                {items.map((s, i) => {
-                    return <tr key={i}>
-                        <td>
-                            <input type="checkbox" value="Bike" defaultChecked={true} onChange={e => onChangeCheckBox(e, s)} />
-                        </td>
-                        <td>
-                            <img src={s.imagen} />
-                        </td>
-                        <td>
-                            <b>Vuelo de:</b> {s.descriptionFrom} <b>a:</b> {s.descriptionTo} <br />
-                            <b>Fecha:</b> {s.date} <b>Horario:</b> {s.horario}  <br />
-                            <b>Tipo:</b> {s.tipo} <b>Duracion:</b> {s.duracion}  <br />
-                        </td>
-                        <td >
-                            <b>Precion por persona: ${s.precio} MXN</b> <br />
-                            <b>{s.numberPerson}</b> Persona{s.numberPerson > 1 && 's'}:   <b>${s.precioPersona} MXN </b> <br />
-                            Iva: <b>${s.iva} MXN </b> <br />
-                            Precio final: <b>${s.precioFinal} MXN </b>
-                        </td>
-                    </tr>
-                })}
-                <tr>
-                    <td colSpan={4}>
-                        <h3>Total a pagar: ${totalPay} MXN</h3>
-                        {totalPay > 0 && <Link to="/pagar" className='button' style={{ backgroundColor: 'orange', padding: '8px 30px' }}>Pagar</Link>}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <DetailItems data={items} onChangeCheckBox={onChangeCheckBox} totalPay={totalPay} />
     </BasicView>
 };
 

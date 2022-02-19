@@ -31,7 +31,7 @@ const Schedule = props => {
     if (!existData) return null;
 
     // console.log('itemsShoppingCart', itemsShoppingCart);
-    return <BasicView title={<h3>Horarios de vuelos: {dataCurrentSearch.descriptionFrom} - {dataCurrentSearch.descriptionTo}</h3>}>
+    return <BasicView title={`Horarios de vuelos: ${dataCurrentSearch.descriptionFrom} - ${dataCurrentSearch.descriptionTo}`}>
         <table>
             <tbody>
                 {dataSchedules.map((s, i) => {

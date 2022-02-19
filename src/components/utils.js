@@ -43,3 +43,14 @@ export const sortArrayOfObject = (data, key) => {
         return 0;
     });
 }
+
+export const getDataForm = form => {
+    let data = {};
+    let elements = form.elements
+    for (let index = 0; index < elements.length; index++) {
+        let element = elements[index];
+        if (element.nodeName !== 'BUTTON') data[element.name] = element.value
+    }
+
+    return data;
+};

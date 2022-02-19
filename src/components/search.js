@@ -4,7 +4,7 @@ import { getDataCountries } from '../store/reducers/countries';
 import { setCurrentSearch } from '../store/reducers/currentSearch';
 
 import Select from '../components/form/select';
-import { getCurrentDate } from '../components/utils';
+import { getCurrentDate, getDataForm } from '../components/utils';
 
 const Search = props => {
     const countries = useSelector(state => state.countries.data);
@@ -16,16 +16,10 @@ const Search = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        let data = {};
-        let elements = e.target.elements
-        for (let index = 0; index < elements.length; index++) {
-            let element = elements[index];
-            if (element.nodeName !== 'BUTTON') data[element.name] = element.value
-        }
-
+        let data = getDataForm(e.target);
         data.descriptionFrom = countries.filter(c => c.value == data.from)[0].description || '';
         data.descriptionTo = countries.filter(c => c.value == data.to)[0].description || '';
-        dispatch(setCurrentSearch(data))
+        dispatch(setCurrentSearch(data));
     };
 
     return <div className='card'>

@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import BasicView from '../components/basicView';
+import DetailItems from '../components/detailItems';
+
 import { useSelector, useDispatch } from 'react-redux';
+import { getDataForm } from '../components/utils';
+
+import { postDataBookings } from '../store/reducers/bookings';
+import { itemsPay } from '../store/reducers/shoppingCart';
 
 const Pay = props => {
     const dataBookings = useSelector(state => state.bookings.data);
     const totayPay = dataBookings.reduce((sum, b) => sum + b.precioFinal, 0);
 
+    const dispatch = useDispatch();
+
     const onSubmit = e => {
         e.preventDefault();
+        let data = getDataForm(e.target);
+        data.totayPay = totayPay;
+        data.items = dataBookings;
+        console.log('sumit::data', data)
+        dispatch(postDataBookings(data));
+        dispatch(itemsPay(dataBookings));
+
     };
 
-    // `Total a pagar: $${totayPay} MXN`
     return <BasicView title="Ingresar informacion para el pago">
         <div className='card'>
             <form onSubmit={onSubmit}>
@@ -22,10 +36,10 @@ const Pay = props => {
                         </div>
                         <div className="divTableRow">
                             <div className="divTableCell">
-                                <input name="number" type="text" min={1} required={true} />
+                                <input name="nombres" type="text" min={1} max={255} required={true} />
                             </div>
                             <div className="divTableCell">
-                                <input name="number" type="text" min={1} required={true} />
+                                <input name="apellidos" type="text" min={1} max={255} required={true} />
                             </div>
                         </div>
                         <div className="divTableRow">
@@ -34,24 +48,24 @@ const Pay = props => {
                         </div>
                         <div className="divTableRow">
                             <div className="divTableCell">
-                                <input name="number" type="text" min={1} required={true} />
+                                <input name="direccion" type="text" min={1} max={255} required={true} />
                             </div>
                             <div className="divTableCell">
-                                <input name="number" type="text" min={1} required={true} />
+                                <input name="correo" type="text" min={1} max={255} required={true} />
                             </div>
                         </div>
                         <div className="divTableRow">
                             <div className="divTableCell">
-                                <b>Total a pagar: ${totayPay} MXN</b>
+                                <h3>Total a pagar: ${totayPay} MXN</h3>
                             </div>
                             <div className="divTableCell">
-                                <button type="submit">Pagar</button>
+                                <button type="submit">Reservar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-
+            <DetailItems data={dataBookings} showActions={false} />
         </div>
     </BasicView>
 };

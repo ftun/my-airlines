@@ -1,26 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     status: '',
     data: [],
 };
 
-// export const getDataSchedules = createAsyncThunk(
-//     'schedules/fecthSchedules',
-//     async () => {
-//         try {
-//             const response = await axios.get('https://demo1506766.mockable.io/schedules');
-//             return response.data;
-//         } catch (error) {
-//             console.error(error);
-//             return [{}];
-//         }
-//     }
-// );
-
 export const shoppingCartReducer = createSlice({
-    name: 'sopphingCart',
+    name: 'shoppingCart',
     initialState,
     reducers: {
         addShoppingCart: (state, action) => {
@@ -28,26 +14,22 @@ export const shoppingCartReducer = createSlice({
         },
         removeShoppingCart: (state, action) => {
             state.data = state.data.filter(d => d.id !== action.payload);
-        }
-        // getListAerolinea: (state, action) => {
-        //     let data = state.data;
-        //     return data.map(d => d.aeolineas);
-        //     // return state[action.payload];
-        // },
+        },
+        removePayItems: (state, action) => {
+            state.data = action.payload;
+        },
     },
-    // extraReducers: (builder) => {
-    //     builder
-    //         .addCase(getDataSchedules.pending, (state) => {
-    //             state.status = 'loading';
-    //         })
-    //         .addCase(getDataSchedules.fulfilled, (state, action) => {
-    //             state.status = 'successfull';
-    //             state.data = action.payload;
-    //             state.listAerolineas = [...new Set(action.payload.map(d => d.aerolinea))];
-    //         });
-    // },
 });
 
-export const { addShoppingCart, removeShoppingCart } = shoppingCartReducer.actions;
+export const selectDataShoppingCart = (state) => state.shoppingCart.data;
+
+export const itemsPay = (dataBookings) => (dispatch, getState) => {
+    const dataShoppingCart = selectDataShoppingCart(getState());
+    let idBookings = dataBookings.map(b => b.id);
+    let newData = dataShoppingCart.filter(s => !idBookings.includes(s.id));
+    dispatch(removePayItems(newData));
+};
+
+export const { addShoppingCart, removeShoppingCart, removePayItems } = shoppingCartReducer.actions;
 
 export default shoppingCartReducer.reducer;
