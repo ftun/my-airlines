@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import BasicView from '../components/basicView';
+import { addBookings, removeBookings, setInitialBookings } from '../store/reducers/bookings';
 
 import { sortArrayOfObject } from '../components/utils';
 
@@ -9,11 +11,13 @@ const ShoppingCart = props => {
     const [totalPay, setTotalPay] = useState(0);
     const dataShoppingCart = sortArrayOfObject(useSelector(state => state.shoppingCart.data), 'date');
     const existItems = Object.keys(dataShoppingCart).length > 0;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (existItems) {
             setItems(dataShoppingCart);
-            getTotalPayAmount()
+            getTotalPayAmount();
+            dispatch(setInitialBookings(dataShoppingCart));
         }
     }, []);
 
@@ -26,8 +30,10 @@ const ShoppingCart = props => {
         let newTotalPay = 0;
         if (e.target.checked) {
             newTotalPay = totalPay + data.precioFinal;
+            dispatch(addBookings(data));
         } else {
             newTotalPay = totalPay - data.precioFinal;
+            dispatch(removeBookings(data.id));
         }
         
         setTotalPay(newTotalPay);
@@ -59,7 +65,8 @@ const ShoppingCart = props => {
                 })}
                 <tr>
                     <td colSpan={4}>
-                        <h3 align='right'>Total a pagar: ${totalPay} MXN</h3>
+                        <h3>Total a pagar: ${totalPay} MXN</h3>
+                        {totalPay > 0 && <Link to="/pagar" className='button' style={{ backgroundColor: 'orange', padding: '8px 30px' }}>Pagar</Link>}
                     </td>
                 </tr>
             </tbody>

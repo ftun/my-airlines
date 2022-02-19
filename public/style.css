@@ -129,7 +129,7 @@ input[type=text], input[type=date], input[type=number], input[type=datetime-loca
   box-sizing: border-box;
 }
 
-input[type=button], input[type=submit], input[type=reset], button[type=submit] {
+input[type=button], input[type=submit], input[type=reset], button[type=submit], a.button {
   background-color: #8d9a9c;
   border: none;
   color: white;
