@@ -36,7 +36,7 @@ const Schedule = props => {
             <tbody>
                 {dataSchedules.map((s, i) => {
                     let data = { ...s };
-                    data.id = `${i}-${dataCurrentSearch.date}-${dataCurrentSearch.descriptionFrom}-${dataCurrentSearch.descriptionTo}`;
+                    data.id = `${i}-${numberPerson}-${dataCurrentSearch.date}-${dataCurrentSearch.descriptionFrom}-${dataCurrentSearch.descriptionTo}`;
                     data.date = dataCurrentSearch.date;
                     data.descriptionFrom = dataCurrentSearch.descriptionFrom;
                     data.descriptionTo = dataCurrentSearch.descriptionTo;
