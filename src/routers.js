@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = lazy(() => import('./App'));
 const ShoppingCart = lazy(() => import('./views/shoppingCart'));
 const Bookings = lazy(() => import('./views/bookings'));
+const Pay = lazy(() => import('./views/pay'));
 
 const Routers = () => {
     return <Suspense fallback={<h5>Loading...</h5>}>
@@ -11,6 +12,7 @@ const Routers = () => {
                 <Route exact path='/' element={<App />} />
                 <Route exact path='/carrito' element={<ShoppingCart />} />
                 <Route exact path='/reservas' element={<Bookings />} />
+                <Route exact path='/pagar' element={<Pay />} />
                 <Route element={NotFound} />
             </Routes>
         </Suspense>

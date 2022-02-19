@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getDataSchedules } from '../store/reducers/schedules';
 import { addShoppingCart, removeShoppingCart } from '../store/reducers/shoppingCart';
-import BasicView from './basicView'
+import BasicView from './basicView';
 // import Select from '../components/form/select';
 
 const Schedule = props => {
