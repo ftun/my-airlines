@@ -36,21 +36,25 @@ const Schedule = props => {
             <tbody>
                 {dataSchedules.map((s, i) => {
                     let data = { ...s };
-                    data.id = i;
+                    data.id = `${i}-${dataCurrentSearch.date}-${dataCurrentSearch.descriptionFrom}-${dataCurrentSearch.descriptionTo}`;
+                    data.date = dataCurrentSearch.date;
+                    data.descriptionFrom = dataCurrentSearch.descriptionFrom;
+                    data.descriptionTo = dataCurrentSearch.descriptionTo;
+                    data.numberPerson = numberPerson;
                     data.precioPersona = s.precio * numberPerson;
                     data.iva = (data.precioPersona * 16) / 100;
                     data.precioFinal = data.precioPersona + data.iva;
                     return <tr key={i}>
                         <td><img src={s.imagen} /></td>
                         <td>
-                            Hora: <b>{s.horario}</b> <br />
+                            Horario: <b>{s.horario}</b> <br />
                             Tipo: {s.tipo} <br />
                             Duracion: <b>{s.duracion}</b>
                         </td>
                         <td>
-                            <h4>Precion por persona: ${s.precio} MXN</h4>
-                            <b>{numberPerson}</b> Persona{numberPerson > 1 && 's'}:   <b>${data.precioPersona} MXN </b>
-                            Iva: {data.iva} <br />
+                            <b>Precion por persona: ${s.precio} MXN</b> <br />
+                            <b>{numberPerson}</b> Persona{numberPerson > 1 && 's'}:   <b>${data.precioPersona} MXN </b> <br />
+                            Iva: <b>${data.iva} MXN </b> <br />
                             Precio final: <b>${data.precioFinal} MXN </b>
                         </td>
                         <td>
@@ -67,3 +71,5 @@ const Schedule = props => {
 }
 
 export default Schedule;
+
+

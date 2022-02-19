@@ -30,3 +30,16 @@ export const getCurrentDate = (current, useTime = false) => {
 
     return date;
 }
+
+export const sortArrayOfObject = (data, key) => {
+    let dataSort = [...data];
+    return dataSort.sort((a, b) => {
+        if (a[key] > b[key]) {
+            return 1;
+        }
+        if (a[key] < b[key]) {
+            return -1;
+        }
+        return 0;
+    });
+}

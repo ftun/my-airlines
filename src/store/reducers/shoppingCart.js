@@ -24,7 +24,7 @@ export const shoppingCartReducer = createSlice({
     initialState,
     reducers: {
         addShoppingCart: (state, action) => {
-            state.data.push(action.payload)
+            state.data.push(action.payload);
         },
         removeShoppingCart: (state, action) => {
             state.data = state.data.filter(d => d.id !== action.payload);
