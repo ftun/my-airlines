@@ -19,10 +19,8 @@ const Pay = props => {
         let data = getDataForm(e.target);
         data.totayPay = totayPay;
         data.items = dataBookings;
-        console.log('sumit::data', data)
         dispatch(postDataBookings(data));
         dispatch(itemsPay(dataBookings));
-
     };
 
     return <BasicView title="Ingresar informacion para el pago">
