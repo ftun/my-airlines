@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BasicView from '../components/basicView';
-
 import DetailItems from '../components/detailItems';
 
 const Bookings = props => {

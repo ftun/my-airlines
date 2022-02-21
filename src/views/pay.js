@@ -62,7 +62,7 @@ const Pay = props => {
                                     <h3>Total a pagar: ${totayPay} MXN</h3>
                                 </div>
                                 <div className="divTableCell">
-                                    <button type="submit">Reservar</button>
+                                    <button name="submit" type="submit">Reservar</button>
                                 </div>
                             </div>
                         </div>
