@@ -31,7 +31,7 @@ const DetailItems = ({
                         Precio final: <b>${s.precioFinal} MXN </b>
                     </td>}
                     {showActions && <td>
-                        <input type="button" value="-" onClick={e => onRemove(e, s)} style={{ backgroundColor: 'orange' }} />
+                        <input type="button" value="-" className="in-table" onClick={e => onRemove(e, s)} style={{ backgroundColor: 'orange' }} />
                     </td>}
                 </tr>
             })}

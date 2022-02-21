@@ -13,20 +13,7 @@ const Bookings = props => {
             <tbody>
                 {dataBookings.length > 0 ? 
                     dataBookings.map((data, i) => {                    
-                        return <>
-                            <tr key={i + '1'}>
-                                <td>
-                                    <b>Reservacion a nombre de:</b> {data.nombres} {data.apellidos} <br />
-                                    <b>Correo electronido:</b> {data.correo} <br />
-                                    <b>Direccion:</b> {data.direccion}
-                                </td>
-                            </tr>
-                            <tr key={i + '2'}>
-                                <td>
-                                    <DetailItems data={data.items} showActions={false} showDetailPay={false} />
-                                </td>
-                            </tr>
-                        </>
+                        return <RowsBody unique={i} data={data} key={i} />;
                     })
                     :
                     <tr >
@@ -39,5 +26,22 @@ const Bookings = props => {
         </table>
     </BasicView>;
 };
+
+const RowsBody = ({ data, unique }) => {
+    return [
+        <tr key={`header-${unique}`}>
+            <td>
+                <b>Reservacion a nombre de:</b> {data.nombres} {data.apellidos} <br />
+                <b>Correo electronido:</b> {data.correo} <br />
+                <b>Direccion:</b> {data.direccion}
+            </td>
+        </tr>,
+        <tr key={`details-${unique}`}>
+            <td>
+                <DetailItems data={data.items} showActions={false} showDetailPay={false} />
+            </td>
+        </tr>
+    ];
+}
 
 export default Bookings;

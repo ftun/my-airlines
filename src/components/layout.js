@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Link } from "react-router-dom";
-import MainDestinatios from '../mainDestinations';
+import MainDestinatios from './mainDestinations';
 import { useSelector } from 'react-redux';
 
 const Index = ({ menuItems, children }) => {

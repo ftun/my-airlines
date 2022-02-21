@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDataCountries } from '../store/reducers/countries';
 import { setCurrentSearch } from '../store/reducers/currentSearch';
 
-import Select from '../components/form/select';
+import Select from '../components/select';
 import { getCurrentDate, getDataForm } from '../components/utils';
 
 const Search = props => {

@@ -51,8 +51,8 @@ const Schedule = props => {
                         </td>
                         <td>
                             {itemsShoppingCart.includes(data.id) ?
-                                <input type="button" value="-" onClick={e => dispatch(removeShoppingCart(data.id))} style={{ backgroundColor: 'orange' }} /> :
-                                <input type="button" value="+" onClick={e => dispatch(addShoppingCart(data))} />
+                                <input type="button" value="-" className="in-table" onClick={e => dispatch(removeShoppingCart(data.id))} style={{ backgroundColor: 'orange' }} /> :
+                                <input type="button" value="+" className="in-table" onClick={e => dispatch(addShoppingCart(data))} />
                             }
                         </td>
                     </tr>
