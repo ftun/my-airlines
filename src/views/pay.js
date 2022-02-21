@@ -10,9 +10,9 @@ import { itemsPay } from '../store/reducers/shoppingCart';
 
 const Pay = props => {
     const [isPay, setIsPay] = useState(false);
+    const [infoPay, setInfoPay] = useState({});
     const dataBookings = useSelector(state => state.bookings.data);
     const totayPay = dataBookings.reduce((sum, b) => sum + b.precioFinal, 0);
-
     const dispatch = useDispatch();
 
     const onSubmit = e => {
@@ -22,6 +22,7 @@ const Pay = props => {
         data.items = dataBookings;
         dispatch(postDataBookings(data));
         dispatch(itemsPay(dataBookings));
+        setInfoPay(data);
         setIsPay(true);
     };
 
@@ -69,7 +70,7 @@ const Pay = props => {
                 </form>
                 <DetailItems data={dataBookings} showActions={false} />
             </>:
-            <h3>Gracias por tu reserva!</h3>
+            <h3>Gracias por tu reserva: {infoPay.nombres + ' ' + infoPay.apellidos}!</h3>
         }
         </div>
     </BasicView>

@@ -10,7 +10,6 @@ export const currentSearchReducer = createSlice({
     initialState,
     reducers: {
         setCurrentSearch: (state, action) => {
-            // console.log('setcurrentSearch', state, action);
             state.data = {...action.payload};
         }
     },

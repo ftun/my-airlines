@@ -39,4 +39,6 @@ export const countriesReducer = createSlice({
     },
 });
 
+export const { selectItem } = countriesReducer.actions;
+
 export default countriesReducer.reducer;
