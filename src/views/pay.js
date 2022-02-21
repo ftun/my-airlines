@@ -9,6 +9,7 @@ import { postDataBookings } from '../store/reducers/bookings';
 import { itemsPay } from '../store/reducers/shoppingCart';
 
 const Pay = props => {
+    const [isPay, setIsPay] = useState(false);
     const dataBookings = useSelector(state => state.bookings.data);
     const totayPay = dataBookings.reduce((sum, b) => sum + b.precioFinal, 0);
 
@@ -21,49 +22,55 @@ const Pay = props => {
         data.items = dataBookings;
         dispatch(postDataBookings(data));
         dispatch(itemsPay(dataBookings));
+        setIsPay(true);
     };
 
     return <BasicView title="Ingresar informacion para el pago">
         <div className='card'>
-            <form onSubmit={onSubmit}>
-                <div className="divTable">
-                    <div className="divTableBody">
-                        <div className="divTableRow">
-                            <div className="divTableCell">Nombres</div>
-                            <div className="divTableCell">Apellidos</div>
-                        </div>
-                        <div className="divTableRow">
-                            <div className="divTableCell">
-                                <input name="nombres" type="text" min={1} max={255} required={true} />
+            {!isPay ?
+            <>
+                <form onSubmit={onSubmit}>
+                    <div className="divTable">
+                        <div className="divTableBody">
+                            <div className="divTableRow">
+                                <div className="divTableCell">Nombres</div>
+                                <div className="divTableCell">Apellidos</div>
                             </div>
-                            <div className="divTableCell">
-                                <input name="apellidos" type="text" min={1} max={255} required={true} />
+                            <div className="divTableRow">
+                                <div className="divTableCell">
+                                    <input name="nombres" type="text" min={1} max={255} required={true} />
+                                </div>
+                                <div className="divTableCell">
+                                    <input name="apellidos" type="text" min={1} max={255} required={true} />
+                                </div>
                             </div>
-                        </div>
-                        <div className="divTableRow">
-                            <div className="divTableCell">Direccion </div>
-                            <div className="divTableCell">Correo electronico</div>
-                        </div>
-                        <div className="divTableRow">
-                            <div className="divTableCell">
-                                <input name="direccion" type="text" min={1} max={255} required={true} />
+                            <div className="divTableRow">
+                                <div className="divTableCell">Direccion </div>
+                                <div className="divTableCell">Correo electronico</div>
                             </div>
-                            <div className="divTableCell">
-                                <input name="correo" type="text" min={1} max={255} required={true} />
+                            <div className="divTableRow">
+                                <div className="divTableCell">
+                                    <input name="direccion" type="text" min={1} max={255} required={true} />
+                                </div>
+                                <div className="divTableCell">
+                                    <input name="correo" type="text" min={1} max={255} required={true} />
+                                </div>
                             </div>
-                        </div>
-                        <div className="divTableRow">
-                            <div className="divTableCell">
-                                <h3>Total a pagar: ${totayPay} MXN</h3>
-                            </div>
-                            <div className="divTableCell">
-                                <button type="submit">Reservar</button>
+                            <div className="divTableRow">
+                                <div className="divTableCell">
+                                    <h3>Total a pagar: ${totayPay} MXN</h3>
+                                </div>
+                                <div className="divTableCell">
+                                    <button type="submit">Reservar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
-            <DetailItems data={dataBookings} showActions={false} />
+                </form>
+                <DetailItems data={dataBookings} showActions={false} />
+            </>:
+            <h3>Gracias por tu reserva!</h3>
+        }
         </div>
     </BasicView>
 };

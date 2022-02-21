@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDataSchedules } from '../store/reducers/schedules';
 import { addShoppingCart, removeShoppingCart } from '../store/reducers/shoppingCart';
 import BasicView from './basicView';
-// import Select from '../components/form/select';
 
 const Schedule = props => {
     const dataCurrentSearch = useSelector(state => state.currentSearch.data);
@@ -12,7 +11,6 @@ const Schedule = props => {
     const numberPerson = dataCurrentSearch.number;
 
     const itemsShoppingCart = [...new Set(dataShoppingCart.map(d => d.id))]
-    // const listAerolineas = useSelector(state => state.schedules.listAerolineas);
     const dispatch = useDispatch();
     const existData = Object.keys(dataCurrentSearch).length > 0;
 
@@ -20,17 +18,9 @@ const Schedule = props => {
         if (existData) dispatch(getDataSchedules());
     }, [existData]);
 
-    const onClickAdd = data => {
-        dispatch(addShoppingCart(data));
-    }
 
-    const onClickRemove = id => {
-        dispatch(removeShoppingCart(id));
-    }
+    if (!existData) return <h3>Busca tu vuelo!</h3>;
 
-    if (!existData) return null;
-
-    // console.log('itemsShoppingCart', itemsShoppingCart);
     return <BasicView title={`Horarios de vuelos: ${dataCurrentSearch.descriptionFrom} - ${dataCurrentSearch.descriptionTo}`}>
         <table>
             <tbody>
@@ -45,7 +35,9 @@ const Schedule = props => {
                     data.iva = (data.precioPersona * 16) / 100;
                     data.precioFinal = data.precioPersona + data.iva;
                     return <tr key={i}>
-                        <td><img src={s.imagen} /></td>
+                        <td>
+                            <img src={s.imagen} className="avatar"/>
+                        </td>
                         <td>
                             Horario: <b>{s.horario}</b> <br />
                             Tipo: {s.tipo} <br />
@@ -59,8 +51,8 @@ const Schedule = props => {
                         </td>
                         <td>
                             {itemsShoppingCart.includes(data.id) ?
-                                <input type="button" value="-" onClick={e => onClickRemove(data.id)} style={{ backgroundColor: 'orange' }} /> :
-                                <input type="button" value="+" onClick={e => onClickAdd(data)} />
+                                <input type="button" value="-" onClick={e => dispatch(removeShoppingCart(data.id))} style={{ backgroundColor: 'orange' }} /> :
+                                <input type="button" value="+" onClick={e => dispatch(addShoppingCart(data))} />
                             }
                         </td>
                     </tr>

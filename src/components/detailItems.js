@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const DetailItems = ({ data = [], onChangeCheckBox = () => { }, showActions = true, totalPay = 0, showDetailPay = true }) => {
+const DetailItems = ({
+    data = [],
+    showActions = true,
+    totalPay = 0,
+    showDetailPay = true ,
+    onChangeCheckBox = () => { },
+    onRemove = () => {},
+}) => {
     return <table>
         <tbody>
             {data.map((s, i) => {
@@ -23,12 +30,15 @@ const DetailItems = ({ data = [], onChangeCheckBox = () => { }, showActions = tr
                         Iva: <b>${s.iva} MXN </b> <br />
                         Precio final: <b>${s.precioFinal} MXN </b>
                     </td>}
+                    {showActions && <td>
+                        <input type="button" value="-" onClick={e => onRemove(e, s)} style={{ backgroundColor: 'orange' }} />
+                    </td>}
                 </tr>
             })}
             {showActions && <tr>
                 <td colSpan={4}>
                     <h3>Total a pagar: ${totalPay} MXN</h3>
-                    {totalPay > 0 && <Link to="/pagar" className='button' style={{ backgroundColor: 'orange', padding: '8px 30px' }}>Pagar</Link>}
+                    {totalPay > 0 && <Link to="/pagar" className='button' style={{ backgroundColor: 'blue', padding: '8px 30px' }}>Pagar</Link>}
                 </td>
             </tr>}
         </tbody>

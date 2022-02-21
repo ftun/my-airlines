@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Index = ({ menuItems, children }) => {
     const dataShoppingCart = useSelector(state => state.shoppingCart.data);
+    const numberShoppingCart = dataShoppingCart.length > 0 ? `(${dataShoppingCart.length})` : '';
 
     return <BrowserRouter>
         <div className="header">
@@ -12,7 +13,7 @@ const Index = ({ menuItems, children }) => {
         </div>
         <div className="topnav">
             {menuItems.map((item, index) => <Link key={index} to={item.path}>{item.label}</Link>)}
-            <Link to="/carrito" style={{ float: 'right' }}>Carrito {dataShoppingCart.length > 0 && dataShoppingCart.length}</Link>
+            <Link to="/carrito" style={{ float: 'right' }}>Carrito {numberShoppingCart}</Link>
         </div>
         <div className="row">
             <div className="leftcolumn">

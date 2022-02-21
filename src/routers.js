@@ -13,7 +13,7 @@ const Routers = () => {
                 <Route exact path='/carrito' element={<ShoppingCart />} />
                 <Route exact path='/reservas' element={<Bookings />} />
                 <Route exact path='/pagar' element={<Pay />} />
-                <Route element={NotFound} />
+                <Route path="*" element={NotFound} />
             </Routes>
         </Suspense>
     ;

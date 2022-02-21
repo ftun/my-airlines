@@ -5,6 +5,7 @@ const initialState = {
     status: '',
     data: [],
     bookings: [],
+    totalPay: 0,
 };
 
 export const postDataBookings = createAsyncThunk(
@@ -20,18 +21,27 @@ export const postDataBookings = createAsyncThunk(
     }
 );
 
+export const getTotalItems = data => data.reduce((sum, b) => sum + b.precioFinal, 0);
+
 export const bookings = createSlice({
     name: 'bookings',
     initialState,
     reducers: {
         addBookings: (state, action) => {
-            state.data.push(action.payload);
+            let data = state.data;
+            data.push(action.payload);
+            state.data = data;
+            state.totalPay = getTotalItems(data);
         },
         removeBookings: (state, action) => {
-            state.data = state.data.filter(d => d.id !== action.payload);
+            let data = state.data.filter(d => d.id !== action.payload);
+            state.data = data;
+            state.totalPay = getTotalItems(data);
         },
         setInitialBookings: (state, action) => {
-            state.data = action.payload;
+            let data = action.payload;
+            state.data = data;
+            state.totalPay = getTotalItems(data);
         },
     },
     extraReducers: (builder) => {

@@ -8,6 +8,7 @@ import { getCurrentDate, getDataForm } from '../components/utils';
 
 const Search = props => {
     const countries = useSelector(state => state.countries.data);
+    const dataCurrentSearch = useSelector(state => state.currentSearch.data);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,16 +37,16 @@ const Search = props => {
                     </div>
                     <div className="divTableRow">
                         <div className="divTableCell">
-                            <Select name="from" options={countries} required={true} />
+                            <Select name="from" options={countries} required={true} defaultValue={dataCurrentSearch.from || ''} />
                         </div>
                         <div className="divTableCell">
-                            <Select name="to" options={countries} required={true} />
+                            <Select name="to" options={countries} required={true} defaultValue={dataCurrentSearch.to || ''} />
                         </div>
                         <div className="divTableCell">
-                            <input name="date" type="date" min={getCurrentDate()} required={true} />
+                            <input name="date" type="date" min={getCurrentDate()} defaultValue={dataCurrentSearch.date || ''} required={true} />
                         </div>
                         <div className="divTableCell">
-                            <input name="number" type="number" min={1} defaultValue={1} required={true} />
+                            <input name="number" type="number" min={1} defaultValue={dataCurrentSearch.number || 1} required={true} />
                         </div>
                         <div className="divTableCell">
                             <button type="submit">Buscar</button>
