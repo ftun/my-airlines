@@ -1,6 +1,17 @@
 
 ## Proyecto "My Airlines"
 
+## Entorno de ejecucion local
+
+**Instalar:** <br> 
+- Node v12.18.3 
+- NPM v6.14.6
+- GIT v2.34.1
+
+**Clonal proyecto:** <br>
+- SSH: ` git clone git@github.com:ftun/my-airlines.git`
+- HTTPS: ` git clone https://github.com/ftun/my-airlines.git`
+
 Scripts para correr el proyecto en local:
 
 ### `npm install`
@@ -27,14 +38,13 @@ Empaqueta correctamente React en modo de producción y optimiza la compilación 
 
 ## Informacion del proyecto:
 
-### [Link Aplicacion AWS](https://main.d18vqkvfb1ah5w.amplifyapp.com/)
-
-### [Link Repositorio GitHub](https://github.com/ftun/my-airlines)
+- [Link Aplicacion AWS](https://main.d18vqkvfb1ah5w.amplifyapp.com/)
+- [Link Repositorio GitHub](https://github.com/ftun/my-airlines)
 
 ## Autor
 
-### Felipe Tun Cauich <felipe.tun.cauich@gmail.com>
-
-### [linkedin](https://www.linkedin.com/in/felipe-tun-cauich/)
+- Felipe Tun Cauich
+- felipe.tun.cauich@gmail.com
+- [linkedin](https://www.linkedin.com/in/felipe-tun-cauich/)
 
 
